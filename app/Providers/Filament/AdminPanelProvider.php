@@ -65,7 +65,7 @@ class AdminPanelProvider extends PanelProvider
     public function boot(): void
     {
         Livewire::setScriptRoute(function ($handle) {
-            return Route::get('/vendor/livewire/livewire.js', $handle);
+            return Route::get('/case_archive/public/livewire/livewire.js', $handle);
         });
     }
 }
