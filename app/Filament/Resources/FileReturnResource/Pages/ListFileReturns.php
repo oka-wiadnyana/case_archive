@@ -6,6 +6,7 @@ use App\Filament\Resources\FileReturnResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
+
 class ListFileReturns extends ListRecords
 {
     protected static string $resource = FileReturnResource::class;
@@ -16,4 +17,7 @@ class ListFileReturns extends ListRecords
             // Actions\CreateAction::make(),
         ];
     }
+
+    
+    
 }

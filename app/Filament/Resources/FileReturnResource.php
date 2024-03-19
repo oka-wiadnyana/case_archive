@@ -23,7 +23,7 @@ class FileReturnResource extends Resource
     protected static ?string $model = FileReturn::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationGroup = 'Main';
+    protected static ?string $navigationGroup = 'Layanan';
 
     protected static ?string $navigationLabel = 'Belum kembali';
 
@@ -62,15 +62,15 @@ class FileReturnResource extends Resource
             ])
             ->filters([
                 //
-            ])
-            ->actions([
-                // Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ])->recordUrl(null);
+            // ->actions([
+            //     // Tables\Actions\EditAction::make(),
+            // ])
+            // ->bulkActions([
+            //     Tables\Actions\BulkActionGroup::make([
+            //         Tables\Actions\DeleteBulkAction::make(),
+            //     ]),
+            // ]);
     }
 
     public static function getRelations(): array
@@ -79,6 +79,8 @@ class FileReturnResource extends Resource
             //
         ];
     }
+
+    
 
     public static function getPages(): array
     {

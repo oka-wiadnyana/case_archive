@@ -2,45 +2,30 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\ArchiveResource\Pages;
-use App\Filament\Resources\ArchiveResource\RelationManagers;
-use App\Filament\Resources\Columns\CustomColumn;
-use App\Models\AlurPerkara;
+use App\Filament\Resources\ArchivePidanaResource\Pages;
+use App\Filament\Resources\ArchivePidanaResource\RelationManagers;
 use App\Models\Archive;
+use App\Models\ArchivePidana;
+use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Columns\Column;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Request;
 use stdClass;
 use Illuminate\Support\Str;
 
-class ArchiveResource extends Resource
+class ArchivePidanaResource extends Resource
 {
     protected static ?string $model = Archive::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-
-    protected static ?string $navigationLabel = 'Arsip Perdata';
+    protected static ?string $navigationLabel = 'Arsip Pidana';
     protected static ?string $navigationGroup = 'Arsip';
-    
-   
-
-    public function customIndex($parameter)
-    {
-        dd($parameter);
-        // Use $parameter here as needed
-        // You can fetch data or perform other operations based on this parameter
-        
-        // Return a response, render a view, or redirect as needed
-    }
 
     public static function form(Form $form): Form
     {
@@ -49,14 +34,12 @@ class ArchiveResource extends Resource
                 //
             ]);
     }
-    
-
 
     public static function getEloquentQuery(): Builder
     {
        
         return static::getModel()::query()->whereHas('klasifikasi',function($q){
-            $q->whereIn('alur_perkara_id',[1,2,7,8]);
+            $q->whereIn('alur_perkara_id',[111,112,113,114,117,118]);
         });
     }
 
@@ -76,20 +59,12 @@ class ArchiveResource extends Resource
                     }
                 ),
                 TextColumn::make('nomor_perkara')->searchable(),
-                TextColumn::make('klasifikasi.pihak1_text')
-                ->getStateUsing(function(Archive $archive){
-                    $nama=Str::of($archive->klasifikasi->pihak1_text)->explode('<br />')->implode(', ');
-                    return $nama;
-                })
-                ->label('Penggugat')
-                ->wrap()
-                ->searchable(),
                 TextColumn::make('klasifikasi.pihak2_text')
                 ->getStateUsing(function(Archive $archive){
                     $nama=Str::of($archive->klasifikasi->pihak2_text)->explode('<br />')->implode(', ');
                     return $nama;
                 })
-                ->label('Tergugat')
+                ->label('Terdakwa')
                 ->wrap()
                 ->searchable(),
                 TextColumn::make('jenisPerkara.nama')->getStateUsing(
@@ -134,9 +109,9 @@ class ArchiveResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListArchives::route('/'),
-            'create' => Pages\CreateArchive::route('/create'),
-            'edit' => Pages\EditArchive::route('/{record}/edit'),
+            'index' => Pages\ListArchivePidanas::route('/'),
+            'create' => Pages\CreateArchivePidana::route('/create'),
+            'edit' => Pages\EditArchivePidana::route('/{record}/edit'),
         ];
     }
 }

@@ -32,7 +32,7 @@ class LoanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
 
-    protected static ?string $navigationGroup = 'Main';
+    protected static ?string $navigationGroup = 'Layanan';
     protected static ?string $navigationLabel = 'Peminjaman';
 
     public static function form(Form $form): Form

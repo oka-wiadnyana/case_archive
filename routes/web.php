@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Filament\Resources\ArchiveResource;
 use App\Livewire\UserList;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', UserList::class);
+
+Route::get('/archives/{parameter}', [ArchiveResource::class, 'customIndex']);

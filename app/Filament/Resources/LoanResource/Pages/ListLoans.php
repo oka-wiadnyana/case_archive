@@ -28,11 +28,11 @@ class ListLoans extends ListRecords
         $print=new PrintController();
         return [
             Actions\CreateAction::make(),
-            Action::make('Dash')
-            ->requiresConfirmation()
-            ->action(function () use($print) {
-                return $print->index();
-            })
+            // Action::make('Dash')
+            // ->requiresConfirmation()
+            // ->action(function () use($print) {
+            //     return $print->index();
+            // })
             
         ];
     }

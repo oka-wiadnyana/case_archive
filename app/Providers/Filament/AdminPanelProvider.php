@@ -21,6 +21,9 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Support\Facades\Route;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Livewire\Livewire;
+use App\Filament\Resources\Columns\CustomColumn;
+use Filament\Tables\Columns\Column;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -59,17 +62,19 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
-            ->brandName('E-Archive');
+            ->brandName('E-Archive')
+            ->viteTheme('resources/css/filament/admin/theme.css');
     }
 
     public function boot(): void
     {
-        Livewire::setScriptRoute(function ($handle) {
-            return Route::get('/case_archive/public/livewire/livewire.js', $handle);
-        });
+       
+        // Livewire::setScriptRoute(function ($handle) {
+        //     return Route::get('/case_archive/public/livewire/livewire.js', $handle);
+        // });
 
-        Livewire::setUpdateRoute(function ($handle) {
-            return Route::post('/case_archive/public/livewire/update', $handle); 
-        });
+        // Livewire::setUpdateRoute(function ($handle) {
+        //     return Route::post('/case_archive/public/livewire/update', $handle); 
+        // });
     }
 }
